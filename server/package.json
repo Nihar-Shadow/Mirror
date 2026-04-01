@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "name": "luxmirror-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ws": "^8.17.1",
+    "express": "^4.19.2"
+  }
+}

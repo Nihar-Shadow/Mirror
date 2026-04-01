@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 20% 4%;
+    --foreground: 36 30% 85%;
+
+    --card: 240 15% 10%;
+    --card-foreground: 36 30% 85%;
+
+    --popover: 240 15% 10%;
+    --popover-foreground: 36 30% 85%;
+
+    --primary: 36 30% 85%;
+    --primary-foreground: 240 20% 4%;
+
+    --secondary: 240 15% 12%;
+    --secondary-foreground: 36 30% 85%;
+
+    --muted: 240 10% 16%;
+    --muted-foreground: 240 5% 50%;
+
+    --accent: 43 90% 61%;
+    --accent-foreground: 240 20% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 10% 18%;
+    --input: 240 10% 18%;
+    --ring: 43 90% 61%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --led-glow: 43 90% 61%;
+    --led-warm: 36 80% 75%;
+    --led-off: 240 5% 25%;
+    --mirror-frame: 240 15% 14%;
+    --frosted: 240 20% 8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'DM Sans', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Ambient background animation */
+@keyframes ambient-drift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes led-pulse {
+  0%, 100% {
+    opacity: 0.85;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes cta-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px 0px hsl(36 30% 85% / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px 8px hsl(36 30% 85% / 0.35);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-ambient {
+    animation: ambient-drift 12s ease infinite;
+    background-size: 300% 300%;
+  }
+  .animate-led-pulse {
+    animation: led-pulse 2.5s ease-in-out infinite;
+  }
+  .animate-cta-pulse {
+    animation: cta-pulse 3s ease-in-out infinite;
+  }
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+  }
+  .animate-fade-up-delay {
+    animation: fade-up 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+}
