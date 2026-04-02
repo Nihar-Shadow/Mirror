@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAdminPanel } from "@/hooks/useAdminPanel";
 
-const ADMIN_KEY = "DEVKEY123";
+const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || "DEVKEY123";
 
 function formatTime(ts: number) {
   return new Date(ts).toLocaleTimeString();
