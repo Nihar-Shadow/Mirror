@@ -6,6 +6,9 @@ import { randomUUID } from "crypto";
 const app = express();
 app.use(express.json());
 
+// Health check endpoint (used by Railway to verify the server is up)
+app.get("/health", (_req, res) => res.json({ status: "ok" }));
+
 const httpServer = createServer(app);
 const wss = new WebSocketServer({ server: httpServer });
 
@@ -137,7 +140,7 @@ wss.on("connection", (ws) => {
   });
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 httpServer.listen(PORT, () => {
-  console.log(`✅ LuxMirror signaling server running on ws://localhost:${PORT}`);
+  console.log(`✅ LuxMirror signaling server running on port ${PORT}`);
 });

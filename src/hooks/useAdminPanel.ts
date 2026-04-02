@@ -1,8 +1,11 @@
 import { useEffect, useRef, useCallback } from "react";
 import { randomUUID } from "@/lib/uuid";
 
-// Dynamically resolve WS URL so it works through any dev tunnel or deployment
-const WS_URL = `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/ws`;
+// In production: reads VITE_WS_URL set in Vercel (e.g. wss://your-server.up.railway.app/ws)
+// In local dev:   falls back to the Vite proxy at /ws -> ws://localhost:3001
+const WS_URL =
+  import.meta.env.VITE_WS_URL ||
+  `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/ws`;
 
 export interface AdminSession {
   sessionId: string;
